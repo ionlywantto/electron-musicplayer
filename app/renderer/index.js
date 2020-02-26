@@ -11,12 +11,6 @@ let currentTrack
 let musicAudio = new Audio()
 
 $('btn-add-music').addEventListener('click', () => {
-    // addMusicWindow = new BrowserWindow({
-    //     width: 500,
-    //     height: 400,
-    //     parent: mainWindow
-    // }, path.join(__dirname, '../renderer', 'add.html'))
-
     addMusicWindow = new remote.BrowserWindow({
         show: false,
         width: 500,
@@ -25,7 +19,6 @@ $('btn-add-music').addEventListener('click', () => {
         icon: path.join(__dirname, '../resources/img', 'icon.png'),
         webPreferences: {
             nodeIntegration: true
-            //devTools: true
         },
         parent: remote.BrowserWindow
     })
@@ -34,8 +27,7 @@ $('btn-add-music').addEventListener('click', () => {
         addMusicWindow.show()
     })
     // Open the DevTools.
-    addMusicWindow.webContents.openDevTools()
-    //ipcRenderer.send('add-music')
+    //addMusicWindow.webContents.openDevTools()
 })
 
 const renderListHtml = (tracks) => {
@@ -61,14 +53,6 @@ ipcRenderer.on('getTracks', (event, tracks) => {
     allTracks = tracks;
     renderListHtml(allTracks)
 })
-
-// remote.on('add-tracks', (event, tracks) => {
-//     allTracks = myStore.addTracks(tracks).getTracks();
-//     //mainWindow.send('getTracks', updatedTracks)
-//     //if(addMusicWindow) {addMusicWindow.close()}
-//     renderListHtml(tracks)
-//     mainWindow.focus()
-//  })
 
 const rendererPalyerHtml = (name, duration) => {
     const player = $('player-status')
@@ -159,8 +143,6 @@ $('trackList').addEventListener('click', (event) => {
                     }
                 }
                 renderListHtml(myStore.delteTrack(id).getTracks())
-                //删除逻辑
-                //ipcRenderer.send('delete-track', id)
             }
         });
     }

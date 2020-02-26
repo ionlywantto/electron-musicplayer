@@ -54,34 +54,6 @@ function createWindow() {
     })
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
-    // ipcMain.on('add-music', (event, arg) => {
-    //     console.log('add music')
-    //     addMusicWindow = new AppWindow({
-    //         width: 500,
-    //         height: 400,
-    //         parent: mainWindow
-    //     }, path.join(__dirname, '../renderer', 'add.html'))
-        
-    //     // Open the DevTools.
-    //     //addMusicWindow.webContents.openDevTools()
-    //  })
-    //  ipcMain.on('open-music-file', (event) => {
-    //      dialog.showOpenDialog({
-    //          title: "选择音乐文件",
-    //          properties: ['openFile', 'multiSelections'],
-    //          filters: [
-    //             { name: '音乐', extensions: ['mp3', 'wma', 'vqf'] },
-    //             { name: '所有文件', extensions: ['*'] }
-    //           ]
-    //      }).then(result => {
-    //         if(result.filePaths) {
-    //             event.sender.send('selected-file', result.filePaths)
-    //         }
-    //      }).catch(err => {
-    //        console.log(err)
-    //      })
-    //     console.log('open from renderer')
-    //  })
 
      ipcMain.on('add-tracks', (event, tracks) => {
         const updatedTracks = myStore.addTracks(tracks).getTracks();
@@ -89,11 +61,6 @@ function createWindow() {
         // if(addMusicWindow) {addMusicWindow.close()}
         mainWindow.focus()
      })
-
-    //  ipcMain.on('delete-track', (event, id) => {
-    //     const updatedTracks = myStore.delteTrack(id).getTracks()
-    //     mainWindow.send('getTracks', updatedTracks)
-    //  })
      
     // 窗口关闭
     mainWindow.on('close', (e) => {

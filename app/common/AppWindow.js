@@ -1,5 +1,5 @@
 
-const { BrowserWindow } = require('electron').remote
+const { BrowserWindow } = require('electron')
 const path = require('path')
 /**
  * 窗口基类

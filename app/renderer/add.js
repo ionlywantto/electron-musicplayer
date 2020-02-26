@@ -8,7 +8,6 @@ const myStore = new DataStore({'name': 'MusicData'})
 let musicFilePath = []
 
 $('btn-select-music').addEventListener('click', () => {
-    //ipcRenderer.send('open-music-file')
     remote.dialog.showOpenDialog({
         title: "选择音乐文件",
         properties: ['openFile', 'multiSelections'],
@@ -18,7 +17,6 @@ $('btn-select-music').addEventListener('click', () => {
          ]
     }).then(result => {
         if(result.filePaths) {
-            //const updatedTracks = myStore.addTracks(result.filePaths).getTracks();
             renderListHtml(result.filePaths)
             musicFilePath = result.filePaths
         }
@@ -28,7 +26,6 @@ $('btn-select-music').addEventListener('click', () => {
 })
 
 $('btn-import-music').addEventListener('click', () => {
-    // remote.addTracks(musicFilePath)
     ipcRenderer.send('add-tracks', musicFilePath)
     remote.getCurrentWindow().close()
 })
@@ -41,10 +38,3 @@ const renderListHtml = (pathes) => {
     }, '')
     musicList.innerHTML = `<ul class="list-group">${musicItemsHtml}</ul>`
 }
-
-// ipcRenderer.on('selected-file', (event, paths) => {
-//     if(Array.isArray(paths)) {
-//         renderListHtml(paths)
-//         musicFilePath = paths
-//     }
-// })
