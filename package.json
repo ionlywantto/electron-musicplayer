@@ -1,0 +1,39 @@
+{
+  "name": "mplayer",
+  "productName": "音乐播放器",
+  "version": "1.0.0",
+  "description": "本地音乐播放器",
+  "copyright": "©2020 LYJ Labs, Inc.",
+  "main": "./app/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^8.0.1",
+    "electron-builder": "^22.3.2",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "electron-store": "^5.1.1",
+    "uuid": "^7.0.0"
+  },
+  "build": {
+    "appId": "MPlayer",
+    "copyright": "©2020 LYJ Labs, Inc.",
+    "win": {
+      "target": "nsis",
+      "icon": "app/resources/img/build/icon.ico",
+      "artifactName": "${productName}-${version}.${ext}"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    }
+  }
+}
